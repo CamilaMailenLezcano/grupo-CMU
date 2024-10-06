@@ -1,6 +1,8 @@
 def busca_primos(n):
-    lista_p = []
-    for num in range(2, 550):
+<<<<<<< HEAD
+=======
+    lista_p = [] # Creamos la lista, vacía, después le vamos a agregar cosas
+    for num in range(2, 550): # Empezar en 2 porque 0 y 1 no son primos. vamos desde el 2 hasta el numero que pusimos (550). Pusimos que corte en 550 de forma adrede, para establecer un corte.
         es_primo = True  
         for i in range (2,num): 
             if num % i == 0: 
@@ -9,3 +11,5 @@ def busca_primos(n):
              lista_p.append(num)
             
     
+>>>>>>> 66e798b7421ecd5771ec5db763e6f8bf552454e8
+
