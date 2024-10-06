@@ -7,7 +7,7 @@ def busca_primos(n):
             if num % i == 0: #Definimos el false (los números que no son primos)
                  es_primo = False 
         if es_primo:
-             lista_p.append(num)
+             lista_p.append(num) #Le pedimos que sume el número primo True a la lista
     print (lista_p [n-1])  #Imprime el argumento, o sea  el numero con el que acompañamos la función
     
     busca_primos (100) #Aca llamamos la función y entre paréntesis ponemos el num que queremos
