@@ -8,8 +8,8 @@ def busca_primos(n):
                  es_primo = False 
         if es_primo:
              lista_p.append(num)
-    print (lista_p [n-1])
+    print (lista_p [n-1])  #Imprime el argumento, o sea  el numero con el que acompañamos la función
     
-    busca_primos (100)
+    busca_primos (100) #Aca llamamos la función y entre paréntesis ponemos el num que queremos
 
 
