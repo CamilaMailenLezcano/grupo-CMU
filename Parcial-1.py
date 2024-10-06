@@ -5,4 +5,7 @@ def busca_primos(n):
         for i in range (2,num): 
             if num % i == 0: 
                  es_primo = False
+        if es_primo:
+             lista_p.append(num)
+            
     
