@@ -8,7 +8,7 @@ def busca_primos(n):
                  es_primo = False
         if es_primo:
              lista_p.append(num)
-            
-    
+    print (lista_p [n-1])
+
 
 
