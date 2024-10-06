@@ -10,6 +10,6 @@ def busca_primos(n):
              lista_p.append(num)
     print (lista_p [n-1])
     
-    busca_primos (1)
+    busca_primos (100)
 
 
