@@ -8,7 +8,7 @@
 **Camila Lezcano**
 
 ## Descripción 
-El presente repositorio está destinado a la entrega de tareas y/o parciales realizados en el marco de la materia "Metodología de Análisis en Opinión Pública". A su vez, se centralizan las consignas y las entregas de cada actividad.
+El presente repositorio está destinado a la entrega de tareas y/o parciales realizados en el marco de la materia "Metodología de Análisis en Opinión Pública", asi como las consignas correspondientes. 
 
 ## Estructura 
 
