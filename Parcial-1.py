@@ -8,6 +8,6 @@ def busca_primos(n):
                  es_primo = False 
         if es_primo:
              lista_p.append(num) #Si el número cumple con la condición para que sea verdadero (es decir, si no es divisible), le pedimos que sume ese número primo a la lista_p.
-     return lista_p[n - 1]  #Imprime el argumento, o sea  el numero con el que acompañamos la función
+        return lista_p[n - 1]  #Imprime el argumento, o sea  el numero con el que acompañamos la función
     
 busca_primos (int(input("Buscá el número primo n°: "))) #Aca llamamos la función y entre paréntesis ponemos un input para que por consola el usuario ponga el número primo que desee buscar.
