@@ -11,6 +11,4 @@ def busca_primos(n):
     print (lista_p [n-1])  #Imprime el argumento, o sea  el numero con el que acompañamos la función
     return lista_p[n - 1]
     
-    busca_primos (100) #Aca llamamos la función y entre paréntesis ponemos el num que queremos
-
-
+busca_primos (int(input("Buscá el número primo n°: "))) #Aca llamamos la función y entre paréntesis ponemos un input para que por consola el usuario ponga el número primo que desee buscar.
