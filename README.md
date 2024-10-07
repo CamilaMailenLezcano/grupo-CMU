@@ -3,7 +3,7 @@
 # METODOLOGÍA DE ANALISIS EN OPINIÓN PÚBLICA
 
 ## Integrantes
-**Uri Ermen**
+**Uri Ermel**
 **Micaela Labur**
 **Camila Lezcano**
 
