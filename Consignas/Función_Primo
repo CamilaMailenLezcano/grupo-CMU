@@ -1,0 +1,4 @@
+Función  tal que tome por argumento “n”  y me devuelva el enésimo número primo 
+Ej  si n= 7 ,  f (n) = 17
+primos: 2,3,5,7,11,13,17
+La nota será en función de la eficiencia, medida como el tiempo que tarden en computar en relación al resto de los grupos
