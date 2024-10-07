@@ -9,6 +9,7 @@ def busca_primos(n):
         if es_primo:
              lista_p.append(num) #Si el número cumple con la condición para que sea verdadero (es decir, si no es divisible), le pedimos que sume ese número primo a la lista_p.
     print (lista_p [n-1])  #Imprime el argumento, o sea  el numero con el que acompañamos la función
+    return lista_p[n - 1]
     
     busca_primos (100) #Aca llamamos la función y entre paréntesis ponemos el num que queremos
 
