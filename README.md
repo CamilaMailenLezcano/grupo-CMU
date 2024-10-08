@@ -14,4 +14,4 @@ El presente repositorio está destinado a la entrega de tareas y/o parciales rea
 
 - **entregas/**: En esta carpeta se encuentran todos los archivos correspondientes a los trabajos. Están organizados y nombrados según la consigna correspondiente.
 
-- **consignas/**: Esta carpeta contiene los documentos con las consignas asignadas para cada tarea.
+- **consignas/**: Esta carpeta contiene los documentos con las consignas asignadas para cada trabajo.
