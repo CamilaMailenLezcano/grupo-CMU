@@ -16,3 +16,11 @@ df_diputados = df_diputados.loc[~((df_diputados['ID101'] == 98) |
                                    
 print (df_diputados.columns.tolist()) #Se pide el nombre de todas las columnas
 print(meta.column_labels) #¿Cuales son las etiquetas de las columnas?
+
+#Quiero saber cuales son las preguntas para  cada columna
+columnas_interes = ['PRO109', 'DEM5']
+for columna in columnas_interes:
+    if columna in df_diputados.columns:
+        print(f"{columna}: {meta.column_labels[df_diputados.columns.get_loc(columna)]}")
+    else:
+        print(f"La columna {columna} no existe en el DataFrame.")
