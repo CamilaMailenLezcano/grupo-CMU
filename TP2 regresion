@@ -43,6 +43,8 @@ for columna in columnas_interes:
         print(f"{columna}: {meta.column_labels[df_diputados.columns.get_loc(columna)]}")
     else:
         print(f"La columna {columna} no existe en el DataFrame.")
+
+
 Y = df_diputados['CLIMA201'] #clima
 X = df_diputados['SOCD5'] # edad
 
@@ -52,3 +54,13 @@ modelo = sm.OLS(Y, X). fit()
 
 print(modelo.summary())
 
+##REGRESIÓN 3##
+
+#Quiero saber cuales son las preguntas para  cada columna 
+
+columnas_interes = ['SOCD4', 'RE1']
+for columna in columnas_interes:
+    if columna in df_diputados.columns:
+        print(f"{columna}: {meta.column_labels[df_diputados.columns.get_loc(columna)]}")
+    else:
+        print(f"La columna {columna} no existe en el DataFrame.")
