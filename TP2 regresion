@@ -17,6 +17,8 @@ df_diputados = df_diputados.loc[~((df_diputados['ID101'] == 98) |
 print (df_diputados.columns.tolist()) #Se pide el nombre de todas las columnas
 print(meta.column_labels) #¿Cuales son las etiquetas de las columnas?
 
+
+##REGRESIÓN 1 ##
 # Quiero saber cuales son las preguntas para  cada columna
 columnas_interes = ['PRO109', 'DEM5']
 for columna in columnas_interes:
