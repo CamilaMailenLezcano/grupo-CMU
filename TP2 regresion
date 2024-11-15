@@ -3,3 +3,15 @@ import numpy as np
 import statsmodels.api as sm
 
 !pip install pyreadstat
+
+import pyreadstat
+file_path ='entregas/BASEDATOS_ARGENTINA_122.sav'
+
+df_diputados, meta = pyreadstat.read_sav(file_path)
+
+df_diputados = df_diputados.loc[~((df_diputados['ID101'] == 98) |
+                                   (df_diputados['ID101'] == 99) |
+                                   (df_diputados['PRO102'] == 98) |
+                                   (df_diputados['PRO112'] == 99))]
+                                   
+print (df_diputados.columns.tolist()) #Se pide el nombre de todas las columnas
