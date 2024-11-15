@@ -36,8 +36,9 @@ modelo = sm.OLS(Y, X). fit()
 
 print(modelo.summary())
 
+##REGRESIÓN 2 ##
 
-#Quiero saber cuales son las preguntas para  cada columna
+#cuales son las preguntas para  cada columna
 
 columnas_interes = ['CLIMA201', 'SOCD5']
 for columna in columnas_interes:
