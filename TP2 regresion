@@ -15,3 +15,4 @@ df_diputados = df_diputados.loc[~((df_diputados['ID101'] == 98) |
                                    (df_diputados['PRO112'] == 99))]
                                    
 print (df_diputados.columns.tolist()) #Se pide el nombre de todas las columnas
+print(meta.column_labels) #¿Cuales son las etiquetas de las columnas?
