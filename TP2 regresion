@@ -67,3 +67,7 @@ for columna in columnas_interes:
         print(f"{columna}: {meta.column_labels[df_diputados.columns.get_loc(columna)]}")
     else:
         print(f"La columna {columna} no existe en el DataFrame.")
+Y = df_diputados['RE1']   #Si es religioso
+X = df_diputados['SOCD4'] # Sexo
+
+X = sm.add_constant (X)
