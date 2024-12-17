@@ -502,3 +502,31 @@ plt.ylabel('Intención de voto NINGUNO/NOSABE')
 plt.title('Regresión Logística: Intención de voto NINGUNO/NOSABE vs. Edad')
 plt.grid(True)
 plt.show()
+
+X = df_dummies_limpio[['GENERO_Femenino', 'GENERO_Masculino', 'GENERO_Otro']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS']
+
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("\nOdds Ratios:")
+print(odds_ratios)
+
+X = df_dummies_limpio[['GENERO_Femenino', 'GENERO_Masculino', 'GENERO_Otro']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_FdT']
+
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("\nOdds Ratios:")
+print(odds_ratios)
