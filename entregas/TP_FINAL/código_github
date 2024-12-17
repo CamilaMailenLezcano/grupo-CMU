@@ -199,3 +199,18 @@ plt.tight_layout()
 
 # Mostrar el gráfico
 plt.show()
+
+#Para poder realizar la regresión, es preciso codificar las categorías de las variables, ya que al estar en string no se puede realizar el cálculo.
+
+#Cada categoría se convierte en una columna binaria.
+
+df_dummies = pd.get_dummies(df, columns=['EDAD','GENERO', 'INT DE VOTO X ESPACIO'], drop_first=False) # Se incluyen todas las categorías
+
+#Eliminamos columnas innecesarias
+
+eliminamos_columnas = ['RADIO', 'Coord1__Latitude', 'Coord1__Longitude', 'METODO', 'interview__key']
+df_dummies_limpio = df_dummies.drop(columns=eliminamos_columnas, axis=1)
+
+df_dummies_limpio = df_dummies_limpio.astype(int) #astype convierte al dataframe en enteros.
+
+print(df_dummies_limpio)
