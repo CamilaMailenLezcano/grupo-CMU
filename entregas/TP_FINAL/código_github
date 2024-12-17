@@ -68,3 +68,35 @@ plt.pie(genero_porcentual, labels=genero_porcentual.index, autopct='%1.1f%%', st
 plt.title('Género')
 plt.axis('equal')  # Para que el gráfico sea circular
 plt.show()
+
+#Realizamos lo mismo, pero con la variable Edad.
+
+#Tabla de frecuencias
+
+edad_absolutos = df['EDAD'].value_counts()
+edad_porcentual = (edad_absolutos / edad_absolutos.sum()) * 100
+edad_frecuencias_juntas = pd.DataFrame({
+    'Edad': edad_absolutos.index,
+    'Frecuencia Absoluta': edad_absolutos.values,
+    'Frecuencia Porcentual': edad_porcentual.values
+})
+print("Edad")
+print("Tabla de frecuencias")
+print(edad_frecuencias_juntas)
+
+#Plasmamos la tabla de frecuencias en un gráfico de barras
+
+plt.bar(edad_porcentual.index, edad_porcentual, color='#002147')
+
+for i, valor in enumerate(edad_porcentual):
+    plt.text(i, valor + 1, f'{valor:.1f}%', ha='center', fontsize=12, color='black')
+
+plt.xlabel('Rangos etarios')
+plt.ylabel('Porcentaje')
+plt.title('Frecuencia rangos etarios')
+plt.xticks(rotation=0)
+plt.gcf().set_size_inches(10, 6)
+plt.tight_layout()
+
+plt.show()
+
