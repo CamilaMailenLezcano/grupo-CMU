@@ -640,3 +640,33 @@ plt.ylabel= ("Priorización del desarrollo económico\n por sobre el medioambien
 plt.title ("Gráfico de dispersión con recta de regresión")
 plt.legend()
 plt.show()
+
+
+import folium
+from IPython.display import display, HTML
+
+rosario_coordenadas = [-32.94682, -60.63932]
+
+# Crear el mapa centrado en Rosario
+mapa_rosario = folium.Map(location=rosario_coordenadas, zoom_start=13)
+
+# Añadir un marcador de ejemplo
+folium.Marker(
+    location=rosario_coordenadas,
+    popup="Centro de Rosario",
+    icon=folium.Icon(color="blue", icon="info-sign"),
+).add_to(mapa_rosario)
+
+# Guardar el mapa como archivo HTML
+mapa_rosario.save("mapa_rosario.html")
+
+print("Mapa guardado como 'mapa_rosario.html'")
+
+import os
+
+ruta_actual = os.getcwd()  # Obtener el directorio de trabajo actual
+print(f"El mapa se guardó en: {ruta_actual}/mapa_rosario.html")
+
+from IPython.display import display
+
+display(mapa_rosario)
