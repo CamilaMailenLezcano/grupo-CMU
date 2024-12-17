@@ -227,3 +227,9 @@ print(df_dummies.columns)
 print("----------------------------------------------------------------------")
 print("Columnas dataframe dummies limpio")
 print(df_dummies_limpio.columns)
+
+#Correlacionamos todas las categorías de la matriz entre sí
+
+matriz_correlacion = df_dummies_limpio.corr()
+
+print(matriz_correlacion)
