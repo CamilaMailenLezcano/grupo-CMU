@@ -215,3 +215,15 @@ df_dummies_limpio = df_dummies_limpio.astype(int) #astype convierte al dataframe
 
 print(df_dummies_limpio)
 print(df_dummies_limpio.dtypes)
+
+
+#Control de columnas
+
+print("Columnas dataframe original")
+print(df.columns)
+print("----------------------------------------------------------------------")
+print("Columnas dataframe dummies sin limpiar")
+print(df_dummies.columns)
+print("----------------------------------------------------------------------")
+print("Columnas dataframe dummies limpio")
+print(df_dummies_limpio.columns)
