@@ -606,3 +606,19 @@ plt.ylabel('Intención de voto LIBERTARIOS')
 plt.title('Regresión Logística: Intención de voto LIBERTARIOS vs MASCULINO')
 plt.grid(True)
 plt.show()
+
+variableX = df_dummies_limpio["GENERO_Masculino"]
+variableY = df_dummies_limpio["INT DE VOTO X ESPACIO_LIBERTARIOS"]
+
+# Graficar los puntos de dispersión
+sns.scatterplot(data=df_dummies_limpio, x=variableX, y=variableY, s=60, color="green")
+
+# Añadir la recta de regresión
+sns.regplot(x=variableX, y=variableY, scatter=False, color='red', line_kws={'label': 'Regresión lineal'})
+
+# Mostrar el gráfico
+plt.title('Gráfico de dispersión con recta de regresión')
+plt.xlabel('GENERO_Masculino')
+plt.ylabel('INT DE VOTO X ESPACIO_LIBERTARIOS')
+plt.legend()
+plt.show()
