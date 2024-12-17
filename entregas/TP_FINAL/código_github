@@ -100,3 +100,52 @@ plt.tight_layout()
 
 plt.show()
 
+# Hacemos cruces entre las variables
+
+#Tabla Bivariada: intención de voto según género
+
+print('Intención de voto según Género')
+
+bivariada_voto_genero = pd.crosstab(df['INT DE VOTO X ESPACIO'], df['GENERO']) #Creamos la tabla y definimos la VD (voto) y la VI (género)
+bivariada_voto_genero_porcentual = bivariada_voto_genero.div(bivariada_voto_genero.sum(axis=0), axis=1) * 100 #Pasamos a porcentajes
+copia1 = bivariada_voto_genero_porcentual.copy()
+print(copia1)
+
+#Graficamos la tabla en un gráfico de barras apiladas
+
+ax = copia1.T.plot(kind='bar', stacked=True, figsize=(10, 6), colormap='viridis') #La T antes del plot sirve para que las barras hagan el cálculo con el total de las columnas (se veía mal si lo sacábamos)
+
+for container in ax.containers: # Para añadir etiquetas de porcentaje
+    ax.bar_label(container, fmt='%.1f%%', label_type='center', fontsize=10, color='white') # La función le pide a cada barra que muestre las etiquetas y define sus características
+    #fmt='%.1f%%': Formato de las etiquetas (porcentajes con un decimal).
+
+    # Configurar etiquetas y título
+plt.xlabel('Género')
+plt.ylabel('Espacios políticos')
+plt.title('Intención de voto según género')
+plt.legend(title='Espacios políticos', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.xticks(rotation=0)
+plt.tight_layout()
+
+plt.show()
+
+#El siguiente gráfico muestra la misma relación de variables, de manera inversa
+copia_inversa1 = pd.crosstab(df['GENERO'], df ['INT DE VOTO X ESPACIO'])
+copia_inversa_porcentaje1 = copia_inversa1.div(copia_inversa1.sum(axis=0), axis=1) * 100
+copia_de_copia_inversa1 = copia_inversa_porcentaje1.copy()
+
+ax = copia_de_copia_inversa1.T.plot(kind='bar', stacked=True, figsize=(10, 6), colormap='viridis')
+
+for container in ax.containers: # Para añadir etiquetas de porcentaje
+    ax.bar_label(container, fmt='%.1f%%', label_type='center', fontsize=10, color='white') #fmt='%.1f%%': Formato de las etiquetas (porcentajes con un decimal).
+
+    # Configurar etiquetas y título
+plt.xlabel('Espacios políticos')
+plt.ylabel('Género')
+plt.title('Intención de voto según género')
+plt.legend(title='Espacios políticos', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.xticks(rotation=0)
+plt.tight_layout()
+
+# Mostrar el gráfico
+plt.show()
