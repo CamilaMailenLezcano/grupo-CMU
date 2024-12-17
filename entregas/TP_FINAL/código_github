@@ -790,3 +790,10 @@ map_path = "/content/drive/MyDrive/TP final OP/Rosario_Mapa_Estratos.html"
 mapa_rosario.save(map_path)
 display(HTML(mapa_rosario.repr_html()))
 print(f"Mapa guardado en: {map_path}")
+
+#Info del df de estratos
+print("segmentos sociales")
+print(gdf_estratos['SEGMENTO'].unique())
+
+print("columnas del df")
+gdf_estratos.columns
