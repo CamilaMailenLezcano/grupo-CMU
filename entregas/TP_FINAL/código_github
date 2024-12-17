@@ -694,3 +694,36 @@ for _, row in gdf.iterrows():
 map_html = mapa_rosario._repr_html_()
 
 display(HTML(map_html))
+
+
+colores_categorias = {
+    "FdT": "blue",
+    "JxC": "yellow",
+    "LIBERTARIOS": "purple",
+    "FIT": "red",
+    "PNK": "green",
+    "NINGUNO/NOSABE": "pink",
+    "OTROS": "gray"
+    }
+
+# Crear el mapa centrado en Rosario
+mapa_rosario = folium.Map(location=rosario_coordenadas, zoom_start=13, control_scale=True)
+
+# Añadir puntos al mapa, con colores según la categoría
+for _, row in df.iterrows():
+    color = colores_categorias.get(row["INT DE VOTO X ESPACIO"], "gray")  # Color por categoría
+    folium.CircleMarker(
+        location=[row["Coord1__Latitude"], row["Coord1__Longitude"]],
+        radius=8,  # Tamaño del círculo
+        color=color,
+        fill=True,
+        fill_color=color,
+        fill_opacity=0.8,  # Opacidad del relleno
+    ).add_to(mapa_rosario)
+
+# Guardar el mapa como archivo HTML
+mapa_rosario.save("mapa_rosario.html")
+print("Mapa guardado como 'mapa_rosario.html'")
+
+# Mostrar el mapa en Jupyter Notebook
+display(mapa_rosario)
