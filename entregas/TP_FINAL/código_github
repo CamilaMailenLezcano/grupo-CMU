@@ -797,3 +797,76 @@ print(gdf_estratos['SEGMENTO'].unique())
 
 print("columnas del df")
 gdf_estratos.columns
+
+colores_estratoec = {
+    1: '#006400',        # Clase alta (más poder económico)
+    2: '#228B22',        # Clase media alta
+    3: '#32CD32',        # Clase media
+    4: '#9ACD32',        # Clase media baja
+    5: 'orange',         # Clase baja integrada
+    6: 'gold',        # Clase baja
+    7: 'brown'         # Clase muy baja (menor poder económico)
+}
+
+# Convertir valores de la columna 'E' a enteros
+gdf_estratos['SEGMENTO'] = gdf_estratos['SEGMENTO'].astype(int)
+
+# Crear el mapa centrado en Rosario
+mapa_rosario_lab = folium.Map(location=[-32.94682, -60.63932], zoom_start=13)
+
+# Diccionario para las etiquetas
+etiquetas = {
+    1: 'Clase alta',
+    2: 'Clase media alta',
+    3: 'Clase media',
+    4: 'Clase media baja',
+    5: 'Clase baja integrada',
+    6: 'Clase baja',
+    7: 'Clase muy baja'
+}
+
+# Función de estilo basada en los valores de 'E'
+def style_function(feature):
+    estrato = feature['properties']['SEGMENTO']
+    color = colores_estratoec.get(estrato, 'blue')  # Color gris por defecto si falta un valor
+    return {
+        'fillColor': color,
+        'color': 'black',
+        'weight': 1,
+        'fillOpacity': 0.9
+    }
+
+# Función para agregar las etiquetas a cada zona del GeoJSON
+def popup_function(feature):
+    estrato = feature['properties']['SEGMENTO']
+    label = etiquetas.get(estrato, 'Desconocido')  # Etiqueta por defecto
+    return label
+
+# Aplicar estilo y agregar las etiquetas al GeoDataFrame
+folium.GeoJson(
+    gdf_estratos,
+    style_function=style_function,
+    tooltip=folium.GeoJsonTooltip(fields=['SEGMENTO'], aliases=['Estrato'], localize=True)
+).add_to(mapa_rosario_lab)
+
+# Agregar leyenda al mapa
+legend_html = """
+     <div style="position: fixed;
+                 bottom: 50px; left: 50px; width: 250px; height: 230px;
+                 border:2px solid grey; background-color:white;
+                 opacity: 1; z-index:9999; font-size: 14px; padding: 15px;">
+        <b>Segmento Socioeconómico</b><br>
+        <i style="background:#006400; width: 18px; height: 18px; display: inline-block;"></i> Clase alta<br>
+        <i style="background:#228B22; width: 18px; height: 18px; display: inline-block;"></i> Clase media alta<br>
+        <i style="background:#32CD32; width: 18px; height: 18px; display: inline-block;"></i> Clase media<br>
+        <i style="background:#9ACD32; width: 18px; height: 18px; display: inline-block;"></i> Clase media baja<br>
+        <i style="background:orange; width: 18px; height: 18px; display: inline-block;"></i> Clase baja integrada<br>
+        <i style="background:gold; width: 18px; height: 18px; display: inline-block;"></i> Clase baja<br>
+        <i style="background:brown; width: 18px; height: 18px; display: inline-block;"></i> Clase muy baja
+     </div>
+"""
+mapa_rosario_lab.get_root().html.add_child(folium.Element(legend_html))
+
+# Guardar el mapa
+mapa_rosario_lab.save("/content/drive/MyDrive/mapa_rosario_lab.html")
+mapa_rosario_lab
