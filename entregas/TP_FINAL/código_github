@@ -149,3 +149,53 @@ plt.tight_layout()
 
 # Mostrar el gráfico
 plt.show()
+
+
+#Repetimos lo anterior, pero cruzando intención de voto con rango etario
+
+#Tabla Bivariada: intención de voto según Edad
+
+print('Intención de voto según Edad')
+
+bivariada_voto_edad = pd.crosstab(df['INT DE VOTO X ESPACIO'], df['EDAD']) #Creamos la tabla y definimos la VD (voto) y la VI (edad)
+bivariada_voto_edad_porcentual = bivariada_voto_edad.div(bivariada_voto_edad.sum(axis=0), axis=1) * 100
+copia2 = bivariada_voto_edad_porcentual.copy()
+print(copia2)
+
+#Graficamos la tabla en un gráfico de barras apiladas
+
+ax = copia2.T.plot(kind='bar', stacked=True, figsize=(10, 6), colormap='viridis')
+
+for container in ax.containers: # Para añadir etiquetas de porcentaje
+    ax.bar_label(container, fmt='%.1f%%', label_type='center', fontsize=10, color='white')
+
+    # Configurar etiquetas y título
+plt.xlabel('Rango etario')
+plt.ylabel('Espacios políticos')
+plt.title('Intención de voto según rango etario')
+plt.legend(title='Espacios políticos', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.xticks(rotation=0)
+plt.tight_layout()
+
+plt.show()
+
+#El siguiente gráfico muestra la misma relación de variables, de manera inversa
+copia_inversa2 = pd.crosstab(df['EDAD'], df ['INT DE VOTO X ESPACIO'])
+copia_inversa_porcentaje2 = copia_inversa2.div(copia_inversa2.sum(axis=0), axis=1) * 100
+copia_de_copia_inversa2 = copia_inversa_porcentaje2.copy()
+
+ax = copia_de_copia_inversa2.T.plot(kind='bar', stacked=True, figsize=(10, 6), colormap='viridis')
+
+for container in ax.containers: # Para añadir etiquetas de porcentaje
+    ax.bar_label(container, fmt='%.1f%%', label_type='center', fontsize=10, color='black')
+
+    # Configurar etiquetas y título
+plt.xlabel('Espacios políticos')
+plt.ylabel('Rango etario')
+plt.title('Intención de voto según rango etario')
+plt.legend(title='Espacios políticos', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.xticks(rotation=0)
+plt.tight_layout()
+
+# Mostrar el gráfico
+plt.show()
