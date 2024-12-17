@@ -44,3 +44,27 @@ plt.gcf().set_size_inches(10, 6)  # tamaño de grafico
 plt.tight_layout()
 
 plt.show() # Mostrar el gráfico
+
+
+#Realizamos lo mismo, pero con la variable Género.
+
+#Tabla de frecuencias
+
+genero_absolutos = df['GENERO'].value_counts()
+genero_porcentual = (genero_absolutos / genero_absolutos.sum()) * 100
+genero_frecuencias_juntas = pd.DataFrame({
+    'Género': genero_absolutos.index,
+    'Frecuencia Absoluta': genero_absolutos.values,
+    'Frecuencia Porcentual': genero_porcentual.values
+})
+print("Género")
+print("Tabla de frecuencias")
+print(genero_frecuencias_juntas)
+
+#Plasmamos la tabla de frecuencias en un gráfico de torta
+
+plt.figure(figsize=(6, 6))
+plt.pie(genero_porcentual, labels=genero_porcentual.index, autopct='%1.1f%%', startangle=90)
+plt.title('Género')
+plt.axis('equal')  # Para que el gráfico sea circular
+plt.show()
