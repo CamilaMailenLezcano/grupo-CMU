@@ -12,3 +12,35 @@ df = pd.read_excel(ruta) #Pedimos a Pandas que lea el dataframe
 df.head() #Vista de las primeras filas del dataframe
 
 print(df.info()) #Nos sirve para ver información sobre las variables del dataframe
+
+#Armamos una tabla de frecuencias con los valores absolutos y porcentuales de intención de voto.
+
+intvoto_absolutos = df['INT DE VOTO X ESPACIO'].value_counts() #Pedimos que cuente para la columna intención de votos los valores y los meta dentro de la variable intvotos_absolutos
+intvoto_porcentual = (intvoto_absolutos / intvoto_absolutos.sum()) * 100 #Pasa los valores absolutos a porcentuales y los mete dentro de la variable intvoto_porcentual
+intvoto_frecuencias_juntas = pd.DataFrame({        #Juntamos ambas frecuencias
+    'Espacio político': intvoto_absolutos.index,
+    'Frecuencia Absoluta': intvoto_absolutos.values,
+    'Frecuencia Porcentual': intvoto_porcentual.values
+})
+print("Intención de voto")
+print("Tabla de frecuencias")
+print(intvoto_frecuencias_juntas)
+
+#tabla de frecuencias en un gráfico de barras
+
+plt.bar(intvoto_porcentual.index, intvoto_porcentual, color='#002147')
+
+for i, valor in enumerate(intvoto_porcentual): # Para que se vean las etiquetas de porcentaje sobre las barras
+    plt.text(i, valor + 1, f'{valor:.1f}%', ha='center', fontsize=12, color='black')
+    #valor + 1: Posición en el eje Y, ligeramente por encima de la barra (ajusta + 1 según sea necesario).
+    #f'{valor:.1f}%': Muestra el porcentaje con un decimal seguido del símbolo %.
+
+    # Configurar el gráfico
+plt.xlabel('Espacios políticos')
+plt.ylabel('Porcentaje')
+plt.title('Intención de voto de espacios políticos')
+plt.xticks(rotation=0) #Para que se vean horizontales
+plt.gcf().set_size_inches(10, 6)  # tamaño de grafico 
+plt.tight_layout()
+
+plt.show() # Mostrar el gráfico
