@@ -214,3 +214,4 @@ df_dummies_limpio = df_dummies.drop(columns=eliminamos_columnas, axis=1)
 df_dummies_limpio = df_dummies_limpio.astype(int) #astype convierte al dataframe en enteros.
 
 print(df_dummies_limpio)
+print(df_dummies_limpio.dtypes)
