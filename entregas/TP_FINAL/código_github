@@ -870,3 +870,37 @@ mapa_rosario_lab.get_root().html.add_child(folium.Element(legend_html))
 # Guardar el mapa
 mapa_rosario_lab.save("/content/drive/MyDrive/mapa_rosario_lab.html")
 mapa_rosario_lab
+
+print("SEGMENTO SOCIOECONÓMICO e INTENCIÓN DE VOTO")
+# Agregar los puntos de intención de voto al mapa principal
+for _, row in gdf.iterrows():
+    intencion_voto = row['INT DE VOTO X ESPACIO']  # Columna de intención de voto
+    color = colores_voto.get(intencion_voto, "black")  # Asigna color; por defecto negro
+
+    # Crear un marcador de tipo círculo en las coordenadas dadas
+    folium.CircleMarker(
+        location=[row['Coord1__Latitude'], row['Coord1__Longitude']],  # Coordenadas del punto
+        radius=6,  # Tamaño del círculo
+        color=color,  # Color del borde
+        fill=True,
+        fill_color=color,  # Color de relleno
+        fill_opacity=1,  # Opacidad del relleno
+        popup=Popup(  # Información que aparecerá al hacer clic en el punto
+            f"EDAD: {row['EDAD']}<br>"
+            f"GENERO: {row['GENERO']}<br>"
+            f"INT DE VOTO: {row['INT DE VOTO X ESPACIO']}<br>"
+            f"RADIO: {row['RADIO']}",
+            max_width=300
+        )
+    ).add_to(mapa_rosario_lab)  # Agregar al mapa principal
+
+# Agregar control de capas para interactuar con diferentes elementos del mapa
+folium.LayerControl().add_to(mapa_rosario_lab)
+
+# Guardar el mapa en la ruta especificada
+map_path = "/content/drive/MyDrive/TP final OP/Rosario_Mapa_Estratos.html"
+mapa_rosario_lab.save(map_path)
+
+# Mostrar el mapa directamente en el entorno de trabajo
+display(HTML(mapa_rosario_lab._repr_html_()))
+print(f"Mapa guardado en: {map_path}")
