@@ -10,3 +10,5 @@ from sklearn.metrics import classification_report
 ruta = "/content/drive/MyDrive/TP final OP/Rosario F.xlsx" #Cargamos el dataframe
 df = pd.read_excel(ruta) #Pedimos a Pandas que lea el dataframe
 df.head() #Vista de las primeras filas del dataframe
+
+print(df.info()) #Nos sirve para ver información sobre las variables del dataframe
