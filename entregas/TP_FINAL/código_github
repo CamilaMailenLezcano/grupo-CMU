@@ -352,3 +352,153 @@ plt.ylabel('Intención de voto OTROS')
 plt.title('Regresión Logística: Intención de voto OTROS vs EDAD 46 a 55')
 plt.grid(True)
 plt.show()
+
+print('Intención de voto LIBERTARIOS según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto LIBERTARIOS')
+plt.title('Regresión Logística: Intención de voto LIBERTARIOS vs. Edad')
+plt.grid(True)
+plt.show()
+
+print('Intención de voto FIT según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_FIT']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto FIT')
+plt.title('Regresión Logística: Intención de voto FIT vs. Edad')
+plt.grid(True)
+plt.show()
+
+print('Intención de voto JxC según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_JxC']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto JxC')
+plt.title('Regresión Logística: Intención de voto JxC vs. Edad')
+plt.grid(True)
+plt.show()
+
+print('Intención de voto PNK según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_PNK']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto PNK')
+plt.title('Regresión Logística: Intención de voto PNK vs. Edad')
+plt.grid(True)
+plt.show()
+
+print('Intención de voto OTROS según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_OTROS']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto OTROS')
+plt.title('Regresión Logística: Intención de voto OTROS vs. Edad')
+plt.grid(True)
+plt.show()
+
+print('Intención de voto NINGUNO/NOSABE según EDAD')
+
+X = df_dummies_limpio[['EDAD_16 a 25', 'EDAD_26 a 35', 'EDAD_36 a 45', 'EDAD_46 a 55', 'EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_NINGUNO/NOSABE']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto NINGUNO/NOSABE')
+plt.title('Regresión Logística: Intención de voto NINGUNO/NOSABE vs. Edad')
+plt.grid(True)
+plt.show()
