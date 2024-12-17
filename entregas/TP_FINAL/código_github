@@ -622,3 +622,21 @@ plt.xlabel('GENERO_Masculino')
 plt.ylabel('INT DE VOTO X ESPACIO_LIBERTARIOS')
 plt.legend()
 plt.show()
+
+
+x_simple= sm.add_constant(df_dummies_limpio['GENERO_Femenino'])
+y_simple= df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS']
+modelosimple= sm.OLS(y_simple,x_simple).fit()
+print(modelosimple.summary())
+
+#Generamos el gráfico de regresión
+plt.scatter(df_dummies_limpio['GENERO_Femenino'], df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS'], label= "Datos reales", color= "green")
+intercepto, pendiente= modelosimple.params
+valoresx= np.linspace(df_dummies_limpio['GENERO_Femenino'].min(), df_dummies_limpio['GENERO_Femenino'].max(), 100)
+valoresy= intercepto+pendiente*valoresx #Beta0 + Beta1 * X (Es la ecuación de la regresión lineal)
+plt.plot(valoresx,valoresy, color="orange", label = f'Recta de regresión (pendiente={pendiente:.2f}') #Personalizamos el gráfico
+plt.xlabel= ("Opinión sobre  la necesidad de liberalizar el mercado")
+plt.ylabel= ("Priorización del desarrollo económico\n por sobre el medioambiente")
+plt.title ("Gráfico de dispersión con recta de regresión")
+plt.legend()
+plt.show()
