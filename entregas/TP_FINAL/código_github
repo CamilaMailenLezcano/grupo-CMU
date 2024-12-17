@@ -727,3 +727,66 @@ print("Mapa guardado como 'mapa_rosario.html'")
 
 # Mostrar el mapa en Jupyter Notebook
 display(mapa_rosario)
+
+import geopandas as gpd
+import folium
+from folium import Map, GeoJson, CircleMarker, Popup
+from IPython.core.display import HTML
+
+# Diccionario de colores para la intención de voto
+colores_voto = {
+    "FdT": "blue",
+    "JxC": "yellow",
+    "LIBERTARIOS": "purple",
+    "FIT": "red",
+    "PNK": "green",
+    "NINGUNO/NOSABE": "pink",
+    "OTROS": "gray"
+}
+
+#Cargar el mapa de estratos económicos (Shapefile o GeoJSON)
+ruta_shapefile = "/content/drive/MyDrive/TP final OP/Estratificación de radios censales - Santa Fe.zip"  # Reemplaza con tu ruta
+gdf_estratos = gpd.read_file(ruta_shapefile)
+
+
+#Agregar los estratos económicos al mapa como fondo
+folium.GeoJson(
+    gdf_estratos,
+    name="Estratos Económicos",
+    style_function=lambda x: {
+        "fillColor": "#BFD3C1",  # Color de fondo (puedes cambiarlo)
+        "color": "black",        # Borde de los polígonos
+        "weight": 0.5,           # Grosor del borde
+        "fillOpacity": 0.5       # Opacidad del fondo
+    }
+).add_to(mapa_rosario)
+
+# 4. Agregar los puntos de intención de voto
+for _, row in gdf.iterrows():
+    intencion_voto = row['INT DE VOTO X ESPACIO']
+    color = colores_voto.get(intencion_voto, "black")  # Color por defecto: negro
+
+    folium.CircleMarker(
+        location=[row['Coord1_Latitude'], row['Coord1_Longitude']],
+        radius=5,  # Tamaño del marcador
+        color=color,
+        fill=True,
+        fill_color=color,
+        fill_opacity=0.7,
+        popup=Popup(
+            f"EDAD: {row['EDAD']}<br>"
+            f"GENERO: {row['GENERO']}<br>"
+            f"INT DE VOTO: {row['INT DE VOTO X ESPACIO']}<br>"
+            f"RADIO: {row['RADIO']}",
+            max_width=300
+        )
+    ).add_to(mapa_rosario)
+
+#Agregar un control de capas
+folium.LayerControl().add_to(mapa_rosario)
+
+# 6. Guardar y mostrar el mapa
+map_path = "/content/drive/MyDrive/TP final OP/Rosario_Mapa_Estratos.html"
+mapa_rosario.save(map_path)
+display(HTML(mapa_rosario.repr_html()))
+print(f"Mapa guardado en: {map_path}")
