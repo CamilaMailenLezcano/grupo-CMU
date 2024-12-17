@@ -233,3 +233,122 @@ print(df_dummies_limpio.columns)
 matriz_correlacion = df_dummies_limpio.corr()
 
 print(matriz_correlacion)
+
+
+import statsmodels.api as sm
+import numpy as np
+
+#Destacamos las siguientes correlaciones
+
+#Correlacionamos las variables más interesantes que vimos
+
+corr_lla_fem = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS'].corr(df_dummies_limpio['GENERO_Femenino'])
+corr_lla_masc = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS'].corr(df_dummies_limpio['GENERO_Masculino'])
+corr_jxc_56ymas = df_dummies_limpio['INT DE VOTO X ESPACIO_JxC'].corr(df_dummies_limpio['EDAD_56 y mas'])
+corr_otros_46a55 = df_dummies_limpio['INT DE VOTO X ESPACIO_OTROS'].corr(df_dummies_limpio['EDAD_46 a 55'])
+
+print("Correlaciones notorias (R de Pearson)")
+print(f" - Género FEMENINO y Voto LIBERTARIO: {corr_lla_fem}") #La f permite incluir dentro de los {} a la variable
+print(f" - Género MASCULINO  y Voto LIBERTARIO: {corr_lla_masc}")
+print(f" - Edad 46 a 55 y Voto OTROS: {corr_otros_46a55}")
+print(f" - Edad 56 y más y Voto JXC: {corr_jxc_56ymas}")
+
+print("Regresión Género Femenino y Libertarios")
+
+X = df_dummies_limpio[['GENERO_Femenino']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('Edad')
+plt.ylabel('Intención de voto LIBERTARIOS')
+plt.title('Regresión Logística: Intención de voto LIBERTARIOS según género FEMENINO')
+plt.grid(True)
+plt.show()
+
+print("Regresión Género Másculino y Libertarios")
+
+X = df_dummies_limpio[['GENERO_Masculino']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_LIBERTARIOS']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('GENERO_Masculino')
+plt.ylabel('Intención de voto LIBERTARIOS')
+plt.title('Regresión Logística: Intención de voto LIBERTARIOS vs MASCULINO')
+plt.grid(True)
+plt.show()
+
+print("Regresión EDAD 56 y mas y JxC")
+
+X = df_dummies_limpio[['EDAD_56 y mas']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_JxC']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('EDAD 56 y mas')
+plt.ylabel('Intención de voto JxC')
+plt.title('Regresión Logística: Intención de voto JxC vs EDAD 56 y mas')
+plt.grid(True)
+plt.show()
+
+print("Regresión EDAD 46 a 55 y Otros ")
+
+X = df_dummies_limpio[['EDAD_46 a 55']]
+y = df_dummies_limpio['INT DE VOTO X ESPACIO_OTROS']
+X = sm.add_constant(X)
+
+modelo = sm.Logit(y, X)
+
+resultado = modelo.fit()
+
+print(resultado.summary())
+
+odds_ratios = np.exp(resultado.params)
+print("Odds Ratios:", odds_ratios)
+
+rango_edad = np.linspace(X.min(), X.max(), 100)
+voto_espacio = resultado.predict(rango_edad)
+
+plt.plot(rango_edad, voto_espacio)
+plt.xlabel('EDAD 46 a 55')
+plt.ylabel('Intención de voto OTROS')
+plt.title('Regresión Logística: Intención de voto OTROS vs EDAD 46 a 55')
+plt.grid(True)
+plt.show()
