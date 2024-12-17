@@ -670,3 +670,27 @@ print(f"El mapa se guardó en: {ruta_actual}/mapa_rosario.html")
 from IPython.display import display
 
 display(mapa_rosario)
+
+from IPython.display import IFrame
+import folium
+from IPython.display import display, HTML
+
+gdf = gpd.read_file("/content/drive/MyDrive/TP final OP/Rosario F.xlsx")
+
+print("Mapa Rosario con unidades del Data Frame de Rosario")
+for _, row in gdf.iterrows():
+    folium.Marker(
+        location=[row['Coord1__Latitude'], row['Coord1__Longitude']],
+        popup=(
+            f"EDAD: {row['EDAD']}<br>"
+            f"GENERO: {row['GENERO']}<br>"
+            f"INT DE VOTO: {row['INT DE VOTO X ESPACIO']}<br>"
+            f"RADIO: {row['RADIO']}"
+        )
+    ).add_to(mapa_rosario)
+
+
+# Mostrar el mapa en el entorno Jupyter Notebook
+map_html = mapa_rosario._repr_html_()
+
+display(HTML(map_html))
